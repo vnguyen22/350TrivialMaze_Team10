@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -21,15 +22,20 @@ import javafx.stage.Stage;
  */
 public class TriviaMenu extends Application {
     
+    private Stage mStage;
+    private GridPane mMenuPane;
+    private Scene mScene;
+    
     @Override
     public void start(Stage primaryStage) {
-        GridPane root = constructGrid();
-        Scene scene = new Scene(root, root.getWidth(), root.getHeight());
-        scene.setNodeOrientation(NodeOrientation.INHERIT);
+        mMenuPane = constructGrid();
+        mScene = new Scene(mMenuPane, mMenuPane.getWidth(), mMenuPane.getHeight());
+        mScene.setNodeOrientation(NodeOrientation.INHERIT);
         
-        primaryStage.setTitle("Trivia Maze");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        mStage = primaryStage;
+        mStage.setTitle("Trivia Maze");
+        mStage.setScene(mScene);
+        mStage.show();
     }
     /**
      * @param args the command line arguments
@@ -65,6 +71,11 @@ public class TriviaMenu extends Application {
     
     
     private int onNew(){
+        TextArea textArea = new TextArea();
+        mScene = new Scene(textArea, 550, 500);
+        mStage.setScene(mScene);
+        mStage.show();
+        Intro.runIntro(textArea);
         return 0;
     }
     
@@ -79,5 +90,5 @@ public class TriviaMenu extends Application {
     private void onQuit(){
         Platform.exit();
     }
-    
+      
 }
