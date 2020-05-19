@@ -5,7 +5,8 @@ Create a menu item that allows the user to start a new game
 Add an option that allows users to load a previously saved game
 Exit click
 Help menu: about, rule.
---------------------------------------------------
+
+5/18/20
 Question 
 Choice
 QuestionManager
