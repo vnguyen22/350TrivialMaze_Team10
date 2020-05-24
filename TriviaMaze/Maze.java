@@ -12,6 +12,7 @@ public class Maze {
 	private int entranceX;
 	private int mazeSizeX;
 	private int mazeSizeY;
+	private Player player;
 	
 	public Maze(int sizeX, int sizeY) {
 		if(sizeX > 10 || sizeY > 10 || sizeX < 2 || sizeY < 2) {
@@ -20,8 +21,9 @@ public class Maze {
 		this.mazeSizeX = sizeX;
 		this.mazeSizeY = sizeY;
 		this.generateEntranceAndExit();
-		
 		maze = new Room[sizeX][sizeY];
+		
+		
 		for(int i = 0; i < sizeY; i++) {
 			for(int j = 0; j < sizeX; j++) {
 				if(entranceX == j && entranceY == i) {
@@ -29,7 +31,7 @@ public class Maze {
 					maze[i][j] = entrance;
 				}
 				else if(exitX == j && exitY == i) {
-					entrance.setExit(true);
+					exit.setExit(true);
 					maze[i][j] = exit;
 				}
 				else {
@@ -37,6 +39,10 @@ public class Maze {
 				}
 			}
 		}
+		this.player = new Player(entranceX, entranceY);
+	}
+	public Room getPlayersRoom() {
+		return maze[player.getPosX()][player.getPosY()];
 	}
 	
 	//This simply generates random numbers for the entrance and exit locations that cannot complete. 
@@ -44,11 +50,11 @@ public class Maze {
 		ArrayList<Integer> randListY = new ArrayList<Integer>(mazeSizeY);
 		ArrayList<Integer> randListX = new ArrayList<Integer>(mazeSizeX);
 		
-		for(int i = 1; i <= mazeSizeX; i++) {
+		for(int i = 1; i <= mazeSizeX - 1; i++) {
 			randListX.add(i);
 		}
 		
-		for(int i = 1; i <= mazeSizeY; i++) {
+		for(int i = 1; i <= mazeSizeY - 1; i++) {
 			randListY.add(i);
 		}
 		Random rand = new Random();
@@ -76,6 +82,22 @@ public class Maze {
 
 	public int getEntranceX() {
 		return entranceX;
+	}
+	public void drawMaze() {
+		for(int i = 0; i < maze.length; i++) {
+			for(int j = 0; j < maze[i].length; j++) {
+				if(player.getPosX() == j && player.getPosY() == i) {
+					System.out.print(" P ");
+				}
+				else {
+					System.out.print(maze[i][j]);
+				}
+			}
+			System.out.println();
+		}
+	}
+	public Player getPlayer() {
+		return player;
 	}
 	
  }
