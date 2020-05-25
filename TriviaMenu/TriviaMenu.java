@@ -1,3 +1,5 @@
+package TriviaMenu;
+
 import java.io.File;
 import javafx.application.Application;
 import javafx.application.Platform;

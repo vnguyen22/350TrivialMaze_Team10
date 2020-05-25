@@ -1,3 +1,5 @@
+package TriviaMenu;
+
 import java.io.Serializable;
 
 public class MazeSettings implements Serializable{

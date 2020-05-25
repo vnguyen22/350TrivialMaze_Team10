@@ -1,6 +1,8 @@
+import TriviaMenu.TriviaMaze_Graphic;
+import TriviaMenu.TriviaMenu;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import triviamenu.*;
+
 
 public class TriviaMazeMain extends Application {
 
