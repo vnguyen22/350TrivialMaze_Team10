@@ -1,5 +1,3 @@
-import TriviaMenu.TriviaMaze_Graphic;
-import TriviaMenu.TriviaMenu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,9 +10,7 @@ public class TriviaMazeMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        if (startMenu.needsToShow()){
-            startMenu.start(primaryStage);
-        }
+        startMenu.start();
         theMaze = new Maze(startMenu.getRowNum(), startMenu.getColNum());
         mazeScreen = new TriviaMaze_Graphic(startMenu.getRowNum(), startMenu.getColNum(),
                                             theMaze.getPlayer().getPosX(), theMaze.getPlayer().getPosY());

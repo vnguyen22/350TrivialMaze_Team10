@@ -1,10 +1,6 @@
-package TriviaMenu;
-
 import java.io.File;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -22,19 +18,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.control.Alert;
-import javafx.event.ActionEvent;
 
 /**
  *
  * @author Gingervitis
  */
-public class TriviaMenu extends Application {
+public class TriviaMenu {
 
     private BorderPane mPane;
     private Stage mStage;
     private Scene mScene;
     private boolean needsToShow = true;
-    private int rowNum, colNum;
+    private int rowNum = 2, colNum = 2;
 
     public TriviaMenu(){}
 
@@ -50,9 +45,8 @@ public class TriviaMenu extends Application {
         return colNum;
     }
     
-    @Override
-    public void start(Stage primaryStage) {
-        mStage = primaryStage;
+    public void start() {
+        mStage = new Stage();
         mPane = new BorderPane();
         mScene = new Scene(mPane, 350, 250);
 
@@ -70,7 +64,7 @@ public class TriviaMenu extends Application {
         mStage.setTitle("Trivia Maze");
         mStage.setScene(mScene);
         mStage.setResizable(false);
-        mStage.show();
+        mStage.showAndWait();
     }
 
     private void onAbout() {
@@ -87,9 +81,11 @@ public class TriviaMenu extends Application {
         Label l1 = new Label("Rows: ");
         ChoiceBox<Integer>  rows = new ChoiceBox<Integer>();
         rows.getItems().addAll(2,3,4,5,6,7,8,9,10);
+        rows.setValue(2);
         Label l2 = new Label("Columns: ");
         ChoiceBox<Integer> cols = new ChoiceBox<Integer>();
         cols.getItems().addAll(2,3,4,5,6,7,8,9,10);
+        cols.setValue(2);
         HBox hbox1 = new HBox(l1, rows);
         hbox1.setSpacing(31.0);
         HBox hbox2 = new HBox(l2, cols);
