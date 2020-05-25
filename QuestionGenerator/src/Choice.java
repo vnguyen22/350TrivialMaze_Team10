@@ -3,6 +3,7 @@ public class Choice {
 	private int choice_id; 
 	private int question_id;
 	private String choice;
+	private String demo;
 	
 	public Choice(int choice_id, int question_id, String choice) {
 		super();
