@@ -14,12 +14,21 @@ import javafx.stage.Stage;
  */
 public class TriviaMaze_Graphic extends Application {
     
-    private Canvas mCanvas= new Canvas(500, 500);
+    private Canvas mCanvas = new Canvas(500, 500);
+    private int rowNum, colNum, playX, playY;
+
+    public TriviaMaze_Graphic(int row, int col, int x, int y){
+        this.rowNum = row;
+        this.colNum = col;
+        this.playX = x; 
+        this.playY = y;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
         root.setCenter(mCanvas);
-        this.drawMaze(10, 10);
+        this.drawMaze(rowNum, colNum, playX, playY);
         
         Scene scene = new Scene(root, 500, 500);
         
@@ -28,8 +37,9 @@ public class TriviaMaze_Graphic extends Application {
         primaryStage.show();
     }
     
-    private void drawMaze(int numCols, int numRows){
+    private void drawMaze(int numCols, int numRows, int playX, int playY){
         GraphicsContext gc = mCanvas.getGraphicsContext2D();
+        gc.save();
         gc.translate(mCanvas.getWidth()*0.2, mCanvas.getHeight()*0.2);
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2.0);
@@ -43,6 +53,8 @@ public class TriviaMaze_Graphic extends Application {
             }//end j
             gc.translate(-(30*numCols), 30);
         }//end i
+        gc.restore();
+        gc.translate(playX*30, playY*30);
     }
 
     /**

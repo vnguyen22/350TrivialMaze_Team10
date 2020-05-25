@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Room {
+public class Room implements Serializable{
 	private boolean exit = false;
 	private boolean entrance = true;
 	private Door leftDoor = new Door();

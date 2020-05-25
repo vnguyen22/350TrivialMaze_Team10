@@ -1,8 +1,9 @@
 import java.util.Random;
+import java.io.Serializable;
 import java.util.ArrayList;
 //TODO Entrance and exit cannot spawn on each other. 
 //TODO Exit only has 10% chance of spawning withing 1 square of the entrance
-public class Maze {
+public class Maze implements Serializable{
 	private Room[][] maze;
 	private Room entrance = new Room();
 	private Room exit = new Room();

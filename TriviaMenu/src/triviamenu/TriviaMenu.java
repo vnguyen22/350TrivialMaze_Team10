@@ -5,6 +5,7 @@
  */
 package triviamenu;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -33,9 +35,25 @@ import javafx.event.ActionEvent;
  */
 public class TriviaMenu extends Application {
 
-    BorderPane mPane;
-    Stage mStage;
-    Scene mScene;
+    private BorderPane mPane;
+    private Stage mStage;
+    private Scene mScene;
+    private boolean needsToShow = true;
+    private int rowNum, colNum;
+
+    public TriviaMenu(){}
+
+    public boolean needsToShow(){
+        return needsToShow;
+    }
+
+    public int getRowNum(){
+        return rowNum;
+    }
+
+    public int getColNum(){
+        return colNum;
+    }
     
     @Override
     public void start(Stage primaryStage) {
@@ -48,6 +66,7 @@ public class TriviaMenu extends Application {
         Button newGame = createButton("Start a new game");
         newGame.setOnAction(event -> onStart());
         Button loadGame = createButton("Load a previous game");
+        loadGame.setOnAction(event -> onLoad());
         Button custQuest = createButton("Add custom questions");
         Button exit = createButton("Exit the game");
         VBox vbox = new VBox(newGame, loadGame, custQuest, exit);
@@ -59,24 +78,41 @@ public class TriviaMenu extends Application {
         mStage.show();
     }
 
+    private void onAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Trivia Maze\nTeam 10: Graham Mix, Van Nguyen, Corbin Smith");
+        alert.showAndWait();
+    }
+
     private void onStart(){
         Alert mazeOptions = new Alert(AlertType.INFORMATION);
         mazeOptions.setTitle("Maze Options");
         mazeOptions.setHeaderText("Please select the number of\nrows and columns for the maze");
         Label l1 = new Label("Rows: ");
-        ChoiceBox<Integer>  rows = new ChoiceBox();
+        ChoiceBox<Integer>  rows = new ChoiceBox<Integer>();
         rows.getItems().addAll(2,3,4,5,6,7,8,9,10);
         Label l2 = new Label("Columns: ");
-        ChoiceBox<Integer> cols = new ChoiceBox();
+        ChoiceBox<Integer> cols = new ChoiceBox<Integer>();
         cols.getItems().addAll(2,3,4,5,6,7,8,9,10);
         HBox hbox1 = new HBox(l1, rows);
-        hbox1.setSpacing(10.0);
+        hbox1.setSpacing(31.0);
         HBox hbox2 = new HBox(l2, cols);
         hbox2.setSpacing(10.0);
         VBox vbox = new VBox(hbox1, hbox2);
         mazeOptions.getDialogPane().setContent(vbox);
         mazeOptions.setWidth(25);
         mazeOptions.showAndWait();
+        rowNum = rows.getValue(); 
+        colNum = cols.getValue();
+        needsToShow = false;
+        mStage.close();
+    }
+
+    private void onLoad(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a file");
+        File selectedFile = fileChooser.showOpenDialog(mStage);
     }
 
     private Button createButton(String text){
@@ -102,18 +138,11 @@ public class TriviaMenu extends Application {
         return menubar;
     }
 
-    private void onAbout() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About");
-        alert.setHeaderText("Trivia Maze\nTeam 10: Graham Mix, Van Nguyen, Corbin Smith");
-        alert.showAndWait();
-    }
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         launch(args);
     }
-    
+    */
 }

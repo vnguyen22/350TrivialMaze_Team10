@@ -1,7 +1,10 @@
 package triviamenu;
+import java.io.Serializable;
 
 public class MazeSettings implements Serializable{
+    
     private int playerPosX, playerPosY, mazeNumRow, mazeNumCol;
+    
     private static MazeSettings mazeSettings;
 
     private MazeSettings(int x, int y, int row, int col){
