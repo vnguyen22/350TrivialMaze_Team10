@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Door {
+public class Door implements Serializable{
 	private boolean permaLocked;
 	private boolean Locked;
 	private String answer;
