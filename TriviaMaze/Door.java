@@ -1,42 +1,64 @@
+
+import java.util.*;
+
 import java.io.Serializable;
 
 public class Door implements Serializable{
 	private boolean permaLocked;
-	private boolean Locked;
-	private String answer;
+	private boolean Locked;	
+	
 	public Door() {
 		this.Locked = true;
+		this.permaLocked = false;
 	}
 	public boolean isLocked() {
 		return this.Locked;
 	}
 	public void setLocked() {
 		this.Locked = true;
-	}
-	public void setUnlocked() {
-		this.Locked = false;
-	}
+	} 
+	
 	public boolean isPermaLocked() {
-		return permaLocked;
+		return this.permaLocked;
 	}
 	public void setPermaLocked(boolean permaLocked) {
 		this.permaLocked = permaLocked;
 	}
-	public String getQuestion() {
+	public Question getQuestion() {
+
 		if(this.isLocked()) {
-			this.answer = "abc";
-			return "Question PlaceHolder";
-		}
-		else {
-			return "You may pass";
+			QuestionGenerator qGenerator= new QuestionGenerator();
+	        Question question = qGenerator.generate();
+	        return question;
+		}else {
+			return null;
 		}
 	}
-	public boolean answerQustion(String ans) {
-		if(ans.contentEquals(answer)) {
+	//answerQuestion : compare playerAnswer with the correct answer by question_id matched in the databse. If correct, return tre
+	public boolean answerQuestion(int question_id, String playerAnswer) {
+		AnswerManager aManager = new AnswerManager();
+		Answer correctAns = aManager.getAnswerByQuestionID(question_id);
+		if(playerAnswer.equalsIgnoreCase(correctAns.getAnswer())) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
+	
+	
+	//public boolean answerQuestion(String ans) {
+	/*public String answerQuestion(int question_id, String playerAnswer) {
+		AnswerManager aManager = new AnswerManager();
+		Answer answer = aManager.getAnswerByQuestionID(question_id);
+		System.out.println("correct is "+answer);
+		if( playerAnswer.equalsIgnoreCase(answer.toString())) {
+			
+			//return true;
+			return "Correct";
+			
+		}
+		else {
+			return "Uncorrect";
+		}
+	}*/
 }
