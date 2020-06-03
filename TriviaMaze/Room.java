@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class Room implements Serializable{
 	private boolean exit = false;
-	private boolean entrance = true;
+	private boolean entrance = false;
 	private Door leftDoor = new Door();
 	private Door rightDoor = new Door();
 	private Door topDoor = new Door();

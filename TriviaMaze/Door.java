@@ -1,5 +1,4 @@
 import java.util.*;
-
 import java.io.Serializable;
 
 public class Door implements Serializable{
@@ -43,3 +42,4 @@ public class Door implements Serializable{
 			return false;
 		}
 	}
+

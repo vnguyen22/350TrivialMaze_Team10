@@ -43,7 +43,7 @@ public class Maze implements Serializable{
 		this.player = new Player(entranceX, entranceY);
 	}
 	public Room getPlayersRoom() {
-		return maze[player.getPosX()][player.getPosY()];
+		return maze[player.getPosY()][player.getPosX()];
 	}
 	
 	//This simply generates random numbers for the entrance and exit locations that cannot complete. 
