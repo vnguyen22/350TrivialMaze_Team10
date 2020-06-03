@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="387.0" prefWidth="553.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="application.MainWindowController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onNewGame_Click" text="New Game..." />
+              <MenuItem fx:id="menuItemSaveGame" mnemonicParsing="false" onAction="#onSaveGame_Click" text="Save Game..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onLoadGame_Click" text="Load Game..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onExit_Click" text="Exit...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onAbout_Click" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRule_Click" text="Rule" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <HBox prefHeight="25.0" prefWidth="553.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txt_Username" promptText="Username" />
+            <TextField fx:id="txt_Password" layoutX="10.0" layoutY="10.0" promptText="Password" />
+            <Button fx:id="bttnLogin" mnemonicParsing="false" onAction="#onLogin_Click" style="-fx-background-color: #2196F3#2196F3;" text="Login" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Button fx:id="bttnSignUp" mnemonicParsing="false" onAction="#onSignUp_Click" style="-fx-background-color: #2196F3;" text="Sign Up" textFill="#f8f8f8">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+      </HBox>
+   </left>
+</BorderPane>

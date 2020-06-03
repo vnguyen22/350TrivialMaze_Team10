@@ -1,6 +1,4 @@
-
 import java.util.*;
-
 import java.io.Serializable;
 
 public class Door implements Serializable{
@@ -44,21 +42,4 @@ public class Door implements Serializable{
 			return false;
 		}
 	}
-	
-	
-	//public boolean answerQuestion(String ans) {
-	/*public String answerQuestion(int question_id, String playerAnswer) {
-		AnswerManager aManager = new AnswerManager();
-		Answer answer = aManager.getAnswerByQuestionID(question_id);
-		System.out.println("correct is "+answer);
-		if( playerAnswer.equalsIgnoreCase(answer.toString())) {
-			
-			//return true;
-			return "Correct";
-			
-		}
-		else {
-			return "Uncorrect";
-		}
-	}*/
-}
+
