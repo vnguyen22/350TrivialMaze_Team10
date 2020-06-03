@@ -1,5 +1,4 @@
 import java.io.File;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,7 +44,7 @@ public class TriviaMenu {
         return colNum;
     }
     
-    public void start() {
+    public void show() {
         mStage = new Stage();
         mPane = new BorderPane();
         mScene = new Scene(mPane, 350, 250);
@@ -81,11 +80,11 @@ public class TriviaMenu {
         Label l1 = new Label("Rows: ");
         ChoiceBox<Integer>  rows = new ChoiceBox<Integer>();
         rows.getItems().addAll(2,3,4,5,6,7,8,9,10);
-        rows.setValue(2);
+        rows.setValue(10);
         Label l2 = new Label("Columns: ");
         ChoiceBox<Integer> cols = new ChoiceBox<Integer>();
         cols.getItems().addAll(2,3,4,5,6,7,8,9,10);
-        cols.setValue(2);
+        cols.setValue(10);
         HBox hbox1 = new HBox(l1, rows);
         hbox1.setSpacing(31.0);
         HBox hbox2 = new HBox(l2, cols);
@@ -128,12 +127,4 @@ public class TriviaMenu {
         menubar.getMenus().addAll(fileMenu, helpMenu);
         return menubar;
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String[] args) {
-        launch(args);
-    }
-    */
 }
