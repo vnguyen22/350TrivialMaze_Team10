@@ -73,7 +73,7 @@ public class TriviaMenu {
         alert.showAndWait();
     }
 
-    private void onStart(){
+    public void onStart(){
         Alert mazeOptions = new Alert(AlertType.INFORMATION);
         mazeOptions.setTitle("Maze Options");
         mazeOptions.setHeaderText("Please select the number of\nrows and columns for the maze");
