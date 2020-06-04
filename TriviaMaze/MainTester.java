@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 public class MainTester {
 	public static void main(String[] args) {
-		Maze maze = new Maze(10, 10);
+		Maze maze = new Maze(3, 3);
 			System.out.println("entX: " + maze.getEntranceX() + " entY: " + maze.getEntranceY());
 			System.out.println("exX: " + maze.getExitX() + " exY: " + maze.getExitY());
 			Scanner sc = new Scanner(System.in);
 			maze.drawMaze();
 			while(true) {
+				if(maze.getWinCondition()) {
+					
 				if(maze.getPlayersRoom().isExit()) {
 					System.out.println("You Win");
 					break;
@@ -111,6 +113,13 @@ public class MainTester {
 							System.out.println();
 						}
 					}
+				}
+				}
+				
+				else
+				{
+					System.out.println("you lose");
+					break;
 				}
 				maze.drawMaze();
 				System.out.println(maze.getPlayersRoom().isExit());

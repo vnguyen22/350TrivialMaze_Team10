@@ -100,5 +100,107 @@ public class Maze implements Serializable{
 	public Player getPlayer() {
 		return player;
 	}
+	public boolean getWinCondition() {
+		boolean canExit = true;
+		int rowTracking = 0;
+		int columnTracking = 0;
+		
+		if(this.getExit().getBottomDoor().isPermaLocked() && this.getExit().getRightDoor().isPermaLocked() && 
+			this.getExit().getLeftDoor().isPermaLocked() && this.getExit().getTopDoor().isPermaLocked()) {
+			return false;
+		}
+		if(this.getExitX() - this.getPlayer().getPosX() < 0) {
+			//Exit is left of player
+			for(int i = 0; i < this.mazeSizeX; i++) {
+				if(this.maze[i][this.getPlayer().getPosX()].getLeftDoor().isPermaLocked()) {
+					rowTracking++;
+				}
+			}
+			
+			if(this.getExitY() - this.getPlayer().getPosY() < 0) {
+				//Exit is Above player
+				for(int i = 0; i < this.mazeSizeX; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getTopDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+			else if(this.getExitY() - this.getPlayer().getPosY() > 0) {
+				//Exit is below the player
+				for(int i = 0; i < this.mazeSizeX; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getBottomDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+			else if(this.getExitY() - this.getPlayer().getPosY() == 0) {
+				//Exit is in the same row as the player
+				for(int i = 0; i < this.mazeSizeY; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getRightDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+		}
+		
+		else if(this.getExitX() - this.getPlayer().getPosX() > 0) {
+			//Exit is right of the player
+			
+			for(int i = 0; i < this.mazeSizeX; i++) {
+				if(this.maze[i][this.getPlayer().getPosX()].getRightDoor().isPermaLocked()) {
+					rowTracking++;
+				}
+			}
+			
+			if(this.getExitY() - this.getPlayer().getPosY() < 0) {
+				//Exit is Above player
+				for(int i = 0; i < this.mazeSizeX; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getTopDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+			else if(this.getExitY() - this.getPlayer().getPosY() > 0) {
+				//Exit is below the player
+				for(int i = 0; i < this.mazeSizeX; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getBottomDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+			else if(this.getExitY() - this.getPlayer().getPosY() == 0) {
+				//Exit is in the same row as the player
+				for(int i = 0; i < this.mazeSizeY; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getRightDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+		}
+		
+		else if(this.getExitX() - this.getPlayer().getPosX() == 0) {
+			//Exit is in the same comlumn as the player
+			if(this.getExitY() - this.getPlayer().getPosY() < 0) {
+				//Exit is Above player
+				for(int i = 0; i < this.mazeSizeX; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getTopDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+			else if(this.getExitY() - this.getPlayer().getPosY() > 0) {
+				//Exit is below the player
+				for(int i = 0; i < this.mazeSizeX; i++) {
+					if(this.maze[this.getPlayer().getPosY()][i].getBottomDoor().isPermaLocked()) {
+						columnTracking++;
+					}
+				}
+			}
+		}
+		if(columnTracking == this.mazeSizeX || rowTracking == this.mazeSizeY) {
+			canExit = false;
+		}
+		return canExit;
+	}
 	
  }
